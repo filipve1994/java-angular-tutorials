@@ -1,1 +1,59 @@
+server:
+  port: 8084
 
+springdoc:
+  swagger-ui:
+    #    path: /swagger
+    display-request-duration: true
+    #    groups-order: desc
+    #    operations-sorter: method
+    #    disable-swagger-default-url: true
+    #    use-root-path: true
+    try-it-out-enabled: true
+    csrf:
+      #      enabled: true
+      enabled: false
+  version: '@springdoc.version@'
+  show-actuator: false
+  api-docs:
+    enabled: true
+#  show-login-endpoint: true
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/javaspringtutorials?createDatabaseIfNotExist=true&useSSL=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: true
+    hibernate:
+      #      ddl-auto: update
+      ddl-auto: create-drop
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    open-in-view: false
+  h2:
+    console:
+      enabled: true
+  application:
+    name: resume-generator
+
+logging:
+  level:
+    org:
+      springframework:
+        security: debug
+      hibernate:
+        SQL: debug
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+management:
+  endpoints:
+    enabled-by-default: true
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
